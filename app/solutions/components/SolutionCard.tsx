@@ -16,6 +16,15 @@ type Solution = {
   colour: string;
 };
 
+// Add proper type for motion div props
+type MotionDivProps = {
+  children: React.ReactNode;
+  initial: { opacity: number; x: number };
+  animate: { opacity: number; x: number };
+  transition: { duration: number };
+  className?: string;
+};
+
 const SolutionCard = ({
   section,
   image,
