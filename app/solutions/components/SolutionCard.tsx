@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 type Solution = {
-  section: any;
+  section: string;
   image: string;
   title: string;
   bottomTitle: string;

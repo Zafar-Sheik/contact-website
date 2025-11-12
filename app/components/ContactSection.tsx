@@ -76,7 +76,7 @@ const ContactSection = () => {
           <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-3">
             <MessageCircle className="w-4 h-4 text-cyan-400" />
             <span className="text-slate-200 text-xs font-medium">
-              Let's Start Your Project
+              Let&apos;s Start Your Project
             </span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
@@ -133,7 +133,7 @@ const ContactSection = () => {
                 <CheckCircle className="w-10 h-10 text-green-400 mx-auto mb-2" />
                 <h3 className="text-white font-bold mb-2">Message Sent!</h3>
                 <p className="text-slate-300 text-sm">
-                  We'll get back to you within 24 hours.
+                  We&apos;ll get back to you within 24 hours.
                 </p>
               </div>
             ) : (

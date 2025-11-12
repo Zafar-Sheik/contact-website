@@ -142,9 +142,9 @@ const Hero = () => {
                 Online Solutions
               </h1>
               <p className="text-lg text-gray-700 leading-relaxed max-w-lg">
-                As Contact Computers celebrates 30 years of IT excellence, we're
-                proud to launch a new era of cloud computing—powering your
-                business with innovation, reliability, and performance.
+                As Contact Computers celebrates 30 years of IT excellence,
+                we&apos;re proud to launch a new era of cloud computing—powering
+                your business with innovation, reliability, and performance.
               </p>
             </motion.div>
 
