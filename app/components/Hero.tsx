@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, easeOut, easeInOut } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react"; // ✅ add this import at the top
+import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const dashboards = [
@@ -71,12 +71,16 @@ const Hero = () => {
     const interval = setInterval(() => {
       setActiveDashboard((prev) => (prev + 1) % dashboards.length);
     }, 5000);
+
     return () => clearInterval(interval);
   }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
   };
 
   const itemVariants = {
@@ -84,7 +88,10 @@ const Hero = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
+      transition: {
+        duration: 0.5,
+        ease: easeOut,
+      },
     },
   };
 
@@ -93,7 +100,7 @@ const Hero = () => {
       id="hero"
       className="pt-8 min-h-screen bg-white relative overflow-hidden text-black"
     >
-      {/* Subtle background pattern */}
+      {/* Background pattern */}
       <div className="absolute inset-0 opacity-[0.04]">
         <div
           className="absolute inset-0"
@@ -104,14 +111,14 @@ const Hero = () => {
         />
       </div>
 
-      {/* Decorative orbs */}
+      {/* Decorative Orbs */}
       <div className="absolute top-1/4 -left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 -right-10 w-72 h-72 bg-purple-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          {/* Text Content */}
+          {/* LEFT SIDE TEXT */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -122,7 +129,6 @@ const Hero = () => {
               <h3 className="text-sm pt-5 text-black tracking-wide">
                 Powered By
               </h3>
-
               <img
                 src="/contactCompLogo.jpeg"
                 alt="Contact Computers Logo"
@@ -138,13 +144,16 @@ const Hero = () => {
               <h1 className="block bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
                 CONTACT
               </h1>
-              <h1 className="text-2xl sm:text-sm md:text-2xl lg:text-2xl font-bold leading-tight from-blue-500 to-cyan-500">
+
+              <h1 className="text-2xl md:text-2xl font-bold leading-tight from-blue-500 to-cyan-500">
                 Online Solutions
               </h1>
+
               <p className="text-lg text-gray-700 leading-relaxed max-w-lg">
                 As Contact Computers celebrates 30 years of IT excellence,
-                we&apos;re proud to launch a new era of cloud computing—powering
-                your business with innovation, reliability, and performance.
+                we&apos;re proud to launch a new era of cloud computing—
+                powering your business with innovation, reliability, and
+                performance.
               </p>
             </motion.div>
 
@@ -159,6 +168,7 @@ const Hero = () => {
                 Get Started
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-300 -z-10"></div>
               </Link>
+
               <Link
                 href="#solutions"
                 className="group border border-gray-400 text-gray-700 px-8 py-4 rounded-xl font-semibold text-center transition-all duration-300 hover:bg-gray-100 hover:scale-105"
@@ -166,36 +176,13 @@ const Hero = () => {
                 View Solutions
               </Link>
             </motion.div>
-
-            {/* Dashboard indicators
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center gap-4 pt-8"
-            >
-              <span className="text-sm text-gray-500 font-medium">
-                Live Dashboards:
-              </span>
-              <div className="flex gap-2">
-                {dashboards.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveDashboard(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === activeDashboard
-                        ? "bg-blue-500 scale-125"
-                        : "bg-gray-400 hover:bg-gray-500"
-                    }`}
-                  />
-                ))}
-              </div>
-            </motion.div> */}
           </motion.div>
 
-          {/* Dashboard Preview */}
+          {/* RIGHT SIDE DASHBOARD */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: easeOut }}
             className="relative"
           >
             <div className="relative bg-[#0a1a2f] backdrop-blur-xl rounded-2xl border border-blue-900 shadow-2xl overflow-hidden">
@@ -214,6 +201,7 @@ const Hero = () => {
                     <p className="text-blue-200 text-sm">Live monitoring</p>
                   </div>
                 </div>
+
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                   <span className="text-xs text-blue-200">Active</span>
@@ -228,7 +216,7 @@ const Hero = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.4, ease: easeOut }}
                     className="space-y-6"
                   >
                     {/* Stats Grid */}
@@ -248,7 +236,11 @@ const Hero = () => {
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${stat.progress}%` }}
-                              transition={{ duration: 1, delay: 0.2 }}
+                              transition={{
+                                duration: 1,
+                                ease: easeInOut,
+                                delay: 0.2,
+                              }}
                               className={`h-2 rounded-full bg-gradient-to-r ${dashboards[activeDashboard].color}`}
                             />
                           </div>
@@ -268,7 +260,10 @@ const Hero = () => {
                               key={activity}
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.1 }}
+                              transition={{
+                                delay: index * 0.1,
+                                ease: easeOut,
+                              }}
                               className="flex items-center gap-3 text-sm"
                             >
                               <div
@@ -285,7 +280,7 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Floating elements for depth */}
+            {/* Floating Elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400/10 rounded-2xl blur-xl -z-10"></div>
             <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-400/10 rounded-2xl blur-xl -z-10"></div>
           </motion.div>
