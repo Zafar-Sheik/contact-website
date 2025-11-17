@@ -5,6 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "./components/Sidebar";
 import SolutionCard from "./components/SolutionCard";
 
+// ###########################################
+//  SOLUTIONS OBJECT (TYPED AUTOMATICALLY)
+// ###########################################
+
 const solutions = {
   "Contact Messaging": {
     id: "contact-messaging",
@@ -123,16 +127,23 @@ const solutions = {
     colour: "text-green-600",
     image: "/solutions-images/dashboard.png",
   },
-};
+} as const;
+
+// 🔥 Creates strong union type of ALL solution keys
+export type SolutionKey = keyof typeof solutions;
+
+// ###########################################
+//  PAGE COMPONENT (FULLY TYPED)
+// ###########################################
 
 const Page = () => {
-  const [selected, setSelected] = useState("Contact Messaging");
+  const [selected, setSelected] = useState<SolutionKey>("Contact Messaging");
   const current = solutions[selected];
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
       <Sidebar
-        items={Object.keys(solutions)}
+        items={Object.keys(solutions) as SolutionKey[]}
         selected={selected}
         onSelect={setSelected}
       />

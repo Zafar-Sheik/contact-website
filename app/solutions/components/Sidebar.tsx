@@ -3,14 +3,16 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { SolutionKey } from "../page";
 
+// ✅ Properly typed props
 type SidebarProps = {
-  items: string[];
-  selected: string;
-  onSelect: (name: string) => void;
+  items: readonly SolutionKey[];
+  selected: SolutionKey;
+  onSelect: (name: SolutionKey) => void;
 };
 
-const Sidebar = ({ items, selected, onSelect }: SidebarProps) => {
+const Sidebar: React.FC<SidebarProps> = ({ items, selected, onSelect }) => {
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -23,7 +25,7 @@ const Sidebar = ({ items, selected, onSelect }: SidebarProps) => {
 
   return (
     <>
-      {/* Floating Arrow Toggle Button with "View Solutions" */}
+      {/* Floating Arrow Toggle Button */}
       <motion.button
         onClick={() => setOpen((prev) => !prev)}
         initial={false}
@@ -31,7 +33,6 @@ const Sidebar = ({ items, selected, onSelect }: SidebarProps) => {
         transition={{ type: "spring", stiffness: 180, damping: 18 }}
         className="fixed z-50 left-0 top-1/2 -translate-y-1/2 bg-white shadow-md border border-gray-200 rounded-r-2xl p-2 hover:bg-gray-100 transition-all duration-300 group flex items-center"
       >
-        {/* Arrow Icon */}
         {open ? (
           <ChevronLeft size={22} className="text-gray-700" />
         ) : (
@@ -43,7 +44,6 @@ const Sidebar = ({ items, selected, onSelect }: SidebarProps) => {
       <AnimatePresence>
         {open && (
           <>
-            {/* Background dim (mobile only) */}
             {isMobile && (
               <motion.div
                 key="overlay"
@@ -80,7 +80,6 @@ const Sidebar = ({ items, selected, onSelect }: SidebarProps) => {
                     key={item}
                     onClick={() => {
                       onSelect(item);
-                      // Scroll to the section smoothly
                       const section = document.getElementById(
                         item.toLowerCase().replace(/\s+/g, "")
                       );
@@ -91,8 +90,8 @@ const Sidebar = ({ items, selected, onSelect }: SidebarProps) => {
                     }}
                     className={`w-full text-left px-4 py-2.5 rounded-lg font-medium transition-all duration-200 ${
                       selected === item
-                        ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
-                        : "text-gray-700 transition-all duration-300 hover:scale-101 hover:shadow-lg hover:shadow-blue-300/25"
+                        ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-sm hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+                        : "text-gray-700 hover:scale-101 hover:shadow-lg hover:shadow-blue-300/25"
                     }`}
                   >
                     {item}
