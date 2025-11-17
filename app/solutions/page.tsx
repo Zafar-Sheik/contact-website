@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "./components/Sidebar";
 import SolutionCard from "./components/SolutionCard";
 
-const solutions: any = {
+const solutions = {
   "Contact Messaging": {
     id: "contact-messaging",
     title: "Contact",
