@@ -19,7 +19,7 @@ export default function HomePage() {
         <ServicesSection />
         <CloudBackupSection />
       </div>
-      <TestimonialsSection />
+
       <ContactSection />
     </>
   );
