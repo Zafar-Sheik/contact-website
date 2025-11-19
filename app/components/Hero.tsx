@@ -116,7 +116,7 @@ const Hero = () => {
       <div className="absolute bottom-1/4 -right-10 w-72 h-72 bg-purple-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <div className="relative max-w-full mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           {/* LEFT SIDE TEXT */}
           <motion.div
@@ -125,6 +125,29 @@ const Hero = () => {
             animate="visible"
             className="space-y-8"
           >
+            <motion.div variants={itemVariants} className="pt-0 space-y-4">
+              {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+                INTRODUCING
+              </h1>
+
+              <h1 className="block bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                CONTACT
+              </h1>
+
+              <h1 className="text-2xl md:text-2xl font-bold leading-tight from-blue-500 to-cyan-500">
+                Online Solutions
+              </h1> */}
+
+              <img src="logo.png" className="w-100" />
+
+              <p className="text-lg pt-5 text-gray-700 leading-relaxed max-w-lg">
+                As Contact Computers celebrates 30 years of IT excellence,
+                we&apos;re proud to launch Contact Online Solutions — a new era
+                of cloud computing — powering your business with innovation,
+                reliability, and performance.
+              </p>
+            </motion.div>
+
             <motion.div variants={itemVariants} className="flex gap-8">
               <h3 className="text-sm pt-5 text-black tracking-wide">
                 Powered By
@@ -135,28 +158,6 @@ const Hero = () => {
                 className="h-20 w-auto"
               />
             </motion.div>
-
-            <motion.div variants={itemVariants} className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
-                INTRODUCING
-              </h1>
-
-              <h1 className="block bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                CONTACT
-              </h1>
-
-              <h1 className="text-2xl md:text-2xl font-bold leading-tight from-blue-500 to-cyan-500">
-                Online Solutions
-              </h1>
-
-              <p className="text-lg text-gray-700 leading-relaxed max-w-lg">
-                As Contact Computers celebrates 30 years of IT excellence,
-                we&apos;re proud to launch a new era of cloud computing—
-                powering your business with innovation, reliability, and
-                performance.
-              </p>
-            </motion.div>
-
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4"

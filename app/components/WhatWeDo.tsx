@@ -10,7 +10,6 @@ import {
   Users,
   ArrowRight,
   ArrowLeft,
-  ChevronRight,
 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
@@ -32,28 +31,28 @@ const WhatWeDo = () => {
       icon: BarChart3,
       title: "Business Dashboards",
       description:
-        "Extract meaningful insights from your accounting or invoicing systems.",
+        "Extract insights and analytics from your accounting or invoicing systems.",
       dark: true,
     },
     {
       icon: MessageSquare,
       title: "Bulk Messaging",
       description:
-        "Connect with customers instantly through customized messaging platforms.",
+        "Connect with customers instantly through automated messaging platforms.",
       dark: false,
     },
     {
       icon: Shield,
       title: "Data Security",
       description:
-        "Keep your business protected with robust security measures.",
+        "Keep your business protected with modern, robust security measures.",
       dark: true,
     },
     {
       icon: Zap,
       title: "Process Streamlining",
       description:
-        "Simplify management and enhance productivity with smart tools.",
+        "Simplify daily management and enhance productivity using smart tools.",
       dark: false,
     },
     {
@@ -70,17 +69,14 @@ const WhatWeDo = () => {
     const isMobile = window.innerWidth < 768;
     const cardWidth = isMobile
       ? scrollRef.current.querySelector(".snap-item")?.clientWidth || 0
-      : 280;
-
-    const scrollAmount = isMobile ? cardWidth : 280;
+      : 260;
 
     scrollRef.current.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
+      left: direction === "right" ? cardWidth : -cardWidth,
       behavior: "smooth",
     });
   };
 
-  // Detect scroll position to show/hide arrows
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -109,7 +105,7 @@ const WhatWeDo = () => {
   return (
     <section
       id="what-we-do"
-      className="relative py-12 bg-slate-50 overflow-hidden"
+      className="relative py-16 bg-slate-50 overflow-hidden"
     >
       <div className="relative mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -117,24 +113,22 @@ const WhatWeDo = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="pl-4 text-left mb-8"
+          className="pl-4 text-left mb-12"
         >
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-2">
-            <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-2.5 py-1">
-              <Zap className="w-3 h-3 text-blue-500" />
-              <span className="text-black text-[10px] font-bold">
-                Our Expertise
-              </span>
-            </div>
+          <div className="inline-flex items-center gap-3 bg-blue-100 rounded-full px-3 py-1 mb-4">
+            <Zap className="w-4 h-4 text-blue-600" />
+            <span className="text-black text-xs font-extrabold uppercase tracking-wide">
+              Our Expertise
+            </span>
           </div>
 
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-1">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-3">
             What We Do
           </h2>
 
-          <p className="text-slate-600 text-xs max-w-2xl">
+          <p className="text-slate-700 text-sm sm:text-base max-w-xl font-medium leading-relaxed">
             Contact Online Solutions offers cost-effective, customised software
-            solutions designed specifically for small to medium-sized
+            solutions tailored specifically for small to medium-sized
             businesses.
           </p>
         </motion.div>
@@ -147,9 +141,9 @@ const WhatWeDo = () => {
               onClick={() => handleScroll("left")}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-1.5 shadow-md hover:scale-110 transition hidden sm:block"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-2 shadow-lg hover:scale-110 transition sm:block hidden"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-5 h-5" />
             </motion.button>
           )}
 
@@ -159,73 +153,67 @@ const WhatWeDo = () => {
               onClick={() => handleScroll("right")}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-1.5 shadow-md hover:scale-110 transition hidden sm:block"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-2 shadow-lg hover:scale-110 transition sm:block hidden"
             >
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-5 h-5" />
             </motion.button>
           )}
 
-          {/* Cards Container with Border Left */}
+          {/* Cards */}
           <motion.div
             ref={scrollRef}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            className="flex overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory border-l-2 border-slate-200 "
-            style={{
-              scrollBehavior: "smooth",
-              marginInlineEnd: "-1.5rem",
-              scrollbarWidth: "none",
-            }}
+            className="flex overflow-x-auto snap-x snap-mandatory gap-6 border-l-2 border-slate-300 pl-2 py-4
+            [&::-webkit-scrollbar]:hidden scrollbar-hide"
           >
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <motion.div
                 key={feature.title}
-                className="flex-shrink-0 snap-item snap-center"
+                className="snap-item flex-shrink-0"
                 style={{
-                  minWidth: "min(75vw, 280px)",
-                  // Mobile: center each card, Desktop: keep minimal margins
-                  marginLeft:
-                    "clamp(0px, calc((100vw - min(75vw, 280px)) / 2), 2vw)",
-                  marginRight:
-                    "clamp(0px, calc((100vw - min(75vw, 280px)) / 2), 4vw)",
+                  minWidth: "240px", // narrower
+                  maxWidth: "240px",
                 }}
               >
                 <div
-                  className={`group relative h-full rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200 ${
+                  className={`group relative h-[340px] rounded-xl p-7 flex flex-col justify-start shadow-md hover:shadow-xl transition-all duration-300 border-2 ${
                     feature.dark
-                      ? "bg-gradient-to-br from-slate-900 to-slate-800 text-white"
-                      : "bg-white text-slate-900"
+                      ? "bg-slate-900 border-slate-700 text-white"
+                      : "bg-white border-slate-200 text-slate-900"
                   }`}
                 >
                   {/* Icon */}
                   <div
-                    className={`inline-flex items-center justify-center w-8 h-8 rounded-lg mb-4 ${
+                    className={`inline-flex items-center justify-center w-10 h-10 rounded-lg mb-4 ${
                       feature.dark
                         ? "bg-blue-500/20 text-blue-300"
                         : "bg-blue-100 text-blue-600"
                     }`}
                   >
-                    <feature.icon className="w-4 h-4" />
+                    <feature.icon className="w-5 h-5" />
                   </div>
 
-                  {/* Content */}
+                  {/* Title */}
                   <h3
-                    className={`text-base font-semibold mb-3 ${
+                    className={`text-lg font-extrabold mb-3 leading-tight ${
                       feature.dark ? "text-white" : "text-slate-900"
                     }`}
                   >
                     {feature.title}
                   </h3>
+
+                  {/* Description */}
                   <p
-                    className={`text-xs leading-relaxed ${
-                      feature.dark ? "text-slate-300" : "text-slate-600"
+                    className={`text-sm leading-relaxed font-medium ${
+                      feature.dark ? "text-slate-300" : "text-slate-700"
                     }`}
                   >
                     {feature.description}
                   </p>
 
-                  {/* Hover effect - Only for dark cards */}
+                  {/* Hover glow for dark cards */}
                   {feature.dark && (
                     <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-blue-500/10 to-cyan-500/10" />
                   )}
@@ -233,27 +221,6 @@ const WhatWeDo = () => {
               </motion.div>
             ))}
           </motion.div>
-
-          {/* Mobile Navigation Dots */}
-          <div className="flex justify-center gap-1.5 mt-4 sm:hidden">
-            {features.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  if (!scrollRef.current) return;
-                  const cardWidth =
-                    scrollRef.current.querySelector(".snap-item")
-                      ?.clientWidth || 0;
-                  scrollRef.current.scrollTo({
-                    left: cardWidth * index,
-                    behavior: "smooth",
-                  });
-                }}
-                className="w-1.5 h-1.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-colors"
-                aria-label={`Go to feature ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>

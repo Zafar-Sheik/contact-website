@@ -13,7 +13,6 @@ import {
   BarChart3,
 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
-import SolutionCard from "./SolutionCard";
 
 const ServicesSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -24,34 +23,34 @@ const ServicesSection = () => {
     {
       title: "Cloud Backup",
       tagline:
-        "Automated, secure cloud storage with real-time synchronization and easy recovery.",
+        "Automated, secure cloud storage with real-time synchronization.",
       description:
-        "Never lose critical business data with our automated cloud backup solutions. Automatic daily backups, version history, and one-click restoration ensure your data is always protected and accessible from anywhere.",
+        "Daily automated backups, version history, encrypted storage, and instant restoration ensure your data is always protected and accessible.",
       icon: Cloud,
       dark: false,
     },
     {
       title: "Cyber Security",
       tagline:
-        "Comprehensive protection against digital threats and data breaches.",
+        "Protection against digital threats, breaches, and cyber attacks.",
       description:
-        "Enterprise-grade security featuring real-time threat detection, firewall protection, and security monitoring. Regular vulnerability assessments and employee training to keep your business safe from cyber attacks.",
+        "Advanced threat detection, firewalls, security audits, and full monitoring to keep your business and customers safe.",
       icon: Shield,
       dark: true,
     },
     {
       title: "VPN Services",
-      tagline: "Secure remote access and encrypted connections for your team.",
+      tagline: "Secure remote access for your entire team.",
       description:
-        "Encryption for secure remote work and data transmission. Fast speeds and seamless connectivity ensuring your team can work safely from anywhere in the world.",
+        "End-to-end encrypted tunnels, high-speed routing, multi-device support, and seamless connectivity for remote employees.",
       icon: Network,
       dark: false,
     },
     {
       title: "Business Dashboards",
-      tagline: "Real-time insights and analytics for informed decision-making.",
+      tagline: "Real-time analytics and AI-driven insights.",
       description:
-        "Customizable dashboards that integrate with your existing systems. Track KPIs, monitor performance metrics, and gain valuable business intelligence through intuitive visualizations and automated reporting.",
+        "Beautiful dashboards that track KPIs, performance, and trends. Get clear insights to drive smarter business decisions.",
       icon: BarChart3,
       dark: true,
     },
@@ -60,37 +59,30 @@ const ServicesSection = () => {
   const handleScroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
 
-    const isMobile = window.innerWidth < 768;
-    const cardWidth = isMobile
-      ? scrollRef.current.querySelector(".snap-item")?.clientWidth || 0
-      : 320;
-
-    const scrollAmount = isMobile ? cardWidth : 320;
-
+    const cardWidth = 280; // What We Do card width
     scrollRef.current.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
+      left: direction === "right" ? cardWidth + 24 : -(cardWidth + 24),
       behavior: "smooth",
     });
   };
 
-  // Detect scroll position to show/hide arrows
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
-    const updateScrollButtons = () => {
+    const update = () => {
       const { scrollLeft, scrollWidth, clientWidth } = el;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
     };
 
-    updateScrollButtons();
-    el.addEventListener("scroll", updateScrollButtons);
-    window.addEventListener("resize", updateScrollButtons);
+    update();
+    el.addEventListener("scroll", update);
+    window.addEventListener("resize", update);
 
     return () => {
-      el.removeEventListener("scroll", updateScrollButtons);
-      window.removeEventListener("resize", updateScrollButtons);
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
     };
   }, []);
 
@@ -100,45 +92,44 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="relative py-16 bg-white overflow-hidden">
-      <div className="relative mx-auto px-4 sm:px-6">
+    <section id="services" className="relative py-24 bg-white overflow-hidden">
+      <div className="relative mx-auto px-6 sm:px-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="pl-6 text-left mb-10"
+          transition={{ duration: 0.6 }}
+          className="text-left mb-14"
         >
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-3">
-            <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-3 py-1.5">
-              <Zap className="w-3.5 h-3.5 text-blue-500" />
-              <span className="text-black text-[11px] font-bold">
-                Enterprise Solutions
-              </span>
-            </div>
+          <div className="inline-flex items-center gap-3 bg-blue-100 rounded-full px-4 py-2 mb-4">
+            <Zap className="w-4 h-4 text-blue-600" />
+            <span className="text-black text-xs font-semibold tracking-wide">
+              Enterprise Solutions
+            </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight mb-3">
             Secure & Scalable{" "}
-            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
               Business Solutions
             </span>
           </h2>
-          <p className="text-slate-600 text-sm max-w-2xl mb-3">
-            Comprehensive technology services designed to protect your data,
-            secure your operations, and provide valuable insights for business
-            growth.
+
+          <p className="text-slate-600 text-base sm:text-lg max-w-2xl mb-4">
+            Protect your data. Secure your operations. Transform your business
+            with professional-grade technology services.
           </p>
+
           <Link
             href="/solutions"
-            className="group inline-flex items-center gap-1 text-slate-400 hover:text-slate-600 font-medium text-sm transition-colors duration-300"
+            className="group inline-flex items-center gap-2 text-slate-500 hover:text-slate-700 text-base font-medium transition-all"
           >
             Explore All Services
-            <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
 
-        {/* Scroll Container */}
+        {/* Cards Scroll */}
         <div className="relative">
           {/* Left Arrow */}
           {canScrollLeft && (
@@ -146,9 +137,9 @@ const ServicesSection = () => {
               onClick={() => handleScroll("left")}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-2 shadow-md hover:scale-110 transition hidden sm:block"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-3 shadow-md hover:scale-110 transition hidden sm:block"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-6 h-6" />
             </motion.button>
           )}
 
@@ -158,106 +149,92 @@ const ServicesSection = () => {
               onClick={() => handleScroll("right")}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-2 shadow-md hover:scale-110 transition hidden sm:block"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-3 shadow-md hover:scale-110 transition hidden sm:block"
             >
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-6 h-6" />
             </motion.button>
           )}
 
-          {/* Cards */}
           <motion.div
             ref={scrollRef}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory"
+            className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
             style={{
               scrollBehavior: "smooth",
-              paddingInline: "",
-              marginInlineStart: "2rem",
-              marginInlineEnd: "-1.5rem",
-              scrollbarWidth: "none",
             }}
           >
             {services.map((service) => (
               <motion.div
                 key={service.title}
-                className="flex-shrink-0 snap-item snap-center"
+                className="flex-shrink-0 snap-center"
                 style={{
-                  minWidth: "min(80vw, 320px)",
-                  marginLeft:
-                    "clamp(0px, calc((100vw - min(80vw, 320px)) / 2), 3vw)",
-                  marginRight:
-                    "clamp(0px, calc((100vw - min(80vw, 320px)) / 2), 6vw)",
+                  width: "280px", // FIXED WIDTH — same as What We Do cards
                 }}
               >
                 <div
-                  className={`group relative h-full rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200 ${
+                  className={`group relative h-full rounded-2xl p-8 shadow-md hover:shadow-lg transition-all duration-300 border ${
                     service.dark
-                      ? "bg-gradient-to-br from-slate-900 to-slate-800 text-white"
-                      : "bg-white text-slate-900"
+                      ? "bg-slate-900 border-slate-700 text-white"
+                      : "bg-white border-slate-200 text-slate-900"
                   }`}
                 >
                   {/* Icon */}
                   <div
-                    className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 ${
+                    className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 ${
                       service.dark
                         ? "bg-blue-500/20 text-blue-300"
                         : "bg-blue-100 text-blue-600"
                     }`}
                   >
-                    <service.icon className="w-6 h-6" />
+                    <service.icon className="w-7 h-7" />
                   </div>
 
-                  {/* Content */}
-                  <h3
-                    className={`text-lg font-semibold mb-2 ${
-                      service.dark ? "text-white" : "text-slate-900"
-                    }`}
-                  >
-                    {service.title}
-                  </h3>
+                  {/* Title */}
+                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+
+                  {/* Tagline */}
                   <p
-                    className={`text-sm font-medium mb-3 ${
+                    className={`text-base font-medium mb-3 ${
                       service.dark ? "text-blue-200" : "text-blue-600"
                     }`}
                   >
                     {service.tagline}
                   </p>
+
+                  {/* Description */}
                   <p
-                    className={`text-xs leading-relaxed ${
+                    className={`text-sm leading-relaxed ${
                       service.dark ? "text-slate-300" : "text-slate-600"
                     }`}
                   >
                     {service.description}
                   </p>
 
-                  {/* Hover effect - Only for dark cards */}
+                  {/* Hover Light Effect */}
                   {service.dark && (
-                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-blue-500/10 to-cyan-500/10" />
+                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-blue-500/10 to-cyan-500/10" />
                   )}
                 </div>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Mobile Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-6 sm:hidden">
+          {/* Mobile Dots */}
+          <div className="flex justify-center gap-2 mt-8 sm:hidden">
             {services.map((_, index) => (
               <button
                 key={index}
                 onClick={() => {
                   if (!scrollRef.current) return;
-                  const cardWidth =
-                    scrollRef.current.querySelector(".snap-item")
-                      ?.clientWidth || 0;
+                  const cardWidth = 280;
                   scrollRef.current.scrollTo({
                     left: cardWidth * index,
                     behavior: "smooth",
                   });
                 }}
-                className="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-colors"
-                aria-label={`Go to service ${index + 1}`}
+                className="w-3 h-3 rounded-full bg-slate-300 hover:bg-slate-400 transition-colors"
               />
             ))}
           </div>

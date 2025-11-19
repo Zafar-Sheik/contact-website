@@ -48,19 +48,15 @@ const SolutionSection = () => {
     if (!scrollRef.current) return;
 
     const isMobile = window.innerWidth < 768;
-    const cardWidth = isMobile
-      ? scrollRef.current.querySelector(".snap-item")?.clientWidth || 0
-      : 350;
-
-    const scrollAmount = isMobile ? cardWidth : 350;
+    const cardWidth =
+      scrollRef.current.querySelector(".snap-item")?.clientWidth || 0;
 
     scrollRef.current.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
+      left: direction === "right" ? cardWidth : -cardWidth,
       behavior: "smooth",
     });
   };
 
-  // Detect scroll position to show/hide arrows
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -83,46 +79,42 @@ const SolutionSection = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
   };
 
   return (
-    <section id="solutions" className="relative py-16 bg-white overflow-hidden">
-      <div className="relative mx-auto px-4 sm:px-6">
+    <section id="solutions" className="relative py-24 bg-white overflow-hidden">
+      <div className="relative mx-auto px-6 sm:px-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="pl-6 text-left mb-10"
+          className="text-left mb-14"
         >
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-3">
-            <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-3 py-1.5">
-              <Zap className="w-3.5 h-3.5 text-blue-500" />
-              <span className="text-black text-[11px] font-bold">
-                Complete Solutions Suite
-              </span>
-            </div>
+          <div className="inline-flex items-center gap-3 bg-blue-100 rounded-full px-4 py-2 mb-4">
+            <Zap className="w-5 h-5 text-blue-600" />
+            <span className="text-black text-sm font-bold tracking-wide">
+              Complete Solutions Suite
+            </span>
           </div>
 
-          <h2 className=" text-2xl sm:text-3xl font-bold text-slate-800">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight mb-3">
             Built for{" "}
             <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
               Your Success
             </span>
-            {/* View All Solutions Link */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            ></motion.div>
           </h2>
+
           <Link
             href="/solutions"
-            className="group inline-flex items-center gap-1 text-slate-400 hover:text-slate- font-medium text-sm transition-colors duration-300"
+            className="group inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 font-medium text-lg transition-colors duration-300"
           >
             View All Solutions
-            <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </motion.div>
 
@@ -134,9 +126,9 @@ const SolutionSection = () => {
               onClick={() => handleScroll("left")}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-2 shadow-md hover:scale-110 transition hidden sm:block"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-4 shadow-xl hover:scale-110 transition hidden sm:flex"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-6 h-6" />
             </motion.button>
           )}
 
@@ -146,9 +138,9 @@ const SolutionSection = () => {
               onClick={() => handleScroll("right")}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-2 shadow-md hover:scale-110 transition hidden sm:block"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-black rounded-full p-4 shadow-xl hover:scale-110 transition hidden sm:flex"
             >
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-6 h-6" />
             </motion.button>
           )}
 
@@ -158,13 +150,11 @@ const SolutionSection = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            className="flex gap-5 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory"
+            className="flex gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth px-2 sm:px-4"
             style={{
-              scrollBehavior: "smooth",
-              paddingInline: "",
-              marginInlineStart: "3rem",
-              marginInlineEnd: "-2rem",
               scrollbarWidth: "none",
+              marginInlineStart: "3rem",
+              marginInlineEnd: "-3rem",
             }}
           >
             {solutions.map((s) => (
@@ -172,12 +162,7 @@ const SolutionSection = () => {
                 key={s.title}
                 className="flex-shrink-0 snap-item snap-center"
                 style={{
-                  minWidth: "min(85vw, 340px)",
-                  // Mobile: center each card, Desktop: keep original margins
-                  marginLeft:
-                    "clamp(0px, calc((100vw - min(85vw, 340px)) / 2), 5vw)",
-                  marginRight:
-                    "clamp(0px, calc((100vw - min(85vw, 340px)) / 2), 10vw)",
+                  minWidth: "min(90vw, 380px)",
                 }}
               >
                 <SolutionCard
@@ -191,7 +176,7 @@ const SolutionSection = () => {
           </motion.div>
 
           {/* Mobile Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-6 sm:hidden">
+          <div className="flex justify-center gap-3 mt-8 sm:hidden">
             {solutions.map((_, index) => (
               <button
                 key={index}
@@ -205,32 +190,33 @@ const SolutionSection = () => {
                     behavior: "smooth",
                   });
                 }}
-                className="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-colors"
-                aria-label={`Go to solution ${index + 1}`}
+                className="w-3 h-3 rounded-full bg-slate-400 hover:bg-slate-500 transition"
               />
             ))}
           </div>
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-14 px-9">
-          <div className="bg-[#0a1a2f] rounded-xl p-6 border border-slate-800 shadow-sm">
-            <h3 className="text-base font-bold text-white mb-1">
+        <div className="text-center mt-20 px-6">
+          <div className="bg-[#0a1a2f] rounded-2xl p-10 border border-slate-800 shadow-2xl">
+            <h3 className="text-xl font-bold text-white mb-2">
               Need a Custom Solution?
             </h3>
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="text-sm text-slate-300 mb-6 max-w-lg mx-auto">
               We build tailored solutions for unique business challenges.
             </p>
-            <div className="flex flex-col sm:flex-row gap-2 justify-center">
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="#contact"
-                className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-md text-xs font-semibold hover:scale-105 transition"
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-md text-sm font-semibold hover:scale-105 transition"
               >
                 Free Consultation
               </Link>
+
               <Link
                 href="/solutions"
-                className="border border-slate-600 text-white px-4 py-2 rounded-md text-xs font-semibold transition hover:bg-slate-800"
+                className="border border-slate-600 text-white px-6 py-3 rounded-md text-sm font-semibold transition hover:bg-slate-800"
               >
                 View All Features
               </Link>

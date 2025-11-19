@@ -64,41 +64,45 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative py-12 bg-slate-900 overflow-hidden"
+      className="relative py-28 bg-slate-900 overflow-hidden"
     >
-      <div className="relative max-w-6xl mx-auto px-4">
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8"
+          className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-3">
-            <MessageCircle className="w-4 h-4 text-cyan-400" />
-            <span className="text-slate-200 text-xs font-medium">
+          <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-5 py-2 mb-6">
+            <MessageCircle className="w-5 h-5 text-cyan-400" />
+            <span className="text-slate-200 text-sm font-medium">
               Let&apos;s Start Your Project
             </span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
             Ready to{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               Transform?
             </span>
           </h2>
-          <p className="text-sm text-slate-300 max-w-2xl mx-auto">
+
+          <p className="text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
             Get a free consultation and discover the perfect solution for your
             business.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Contact Info */}
-          <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
-            <h3 className="text-lg font-bold text-white mb-3">Get In Touch</h3>
-            <p className="text-slate-300 text-sm mb-4">
-              Reach out for support or consultations.
+          <div className="bg-slate-800/50 rounded-3xl p-10 border border-slate-700/50 shadow-xl">
+            <h3 className="text-2xl font-bold text-white mb-4">Get In Touch</h3>
+            <p className="text-slate-300 text-base mb-6">
+              Reach out for support, consultations, or project planning.
             </p>
-            <div className="space-y-3">
+
+            <div className="space-y-5">
               {[
                 { icon: Phone, label: "Phone", value: "+27 82 570 8786" },
                 {
@@ -111,10 +115,10 @@ const ContactSection = () => {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-3 text-sm text-slate-300"
+                  className="flex items-center gap-4 text-base text-slate-300"
                 >
-                  <div className="w-8 h-8 rounded-md bg-cyan-600 flex items-center justify-center text-white">
-                    <item.icon className="w-4 h-4" />
+                  <div className="w-10 h-10 rounded-lg bg-cyan-600 flex items-center justify-center text-white shadow-md">
+                    <item.icon className="w-5 h-5" />
                   </div>
                   <span className="font-semibold">{item.label}:</span>{" "}
                   {item.value}
@@ -126,19 +130,21 @@ const ContactSection = () => {
           {/* Contact Form */}
           <form
             onSubmit={handleSubmit}
-            className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 space-y-4"
+            className="bg-slate-800/50 rounded-3xl p-10 border border-slate-700/50 shadow-xl space-y-6"
           >
             {isSubmitted ? (
-              <div className="text-center py-8">
-                <CheckCircle className="w-10 h-10 text-green-400 mx-auto mb-2" />
-                <h3 className="text-white font-bold mb-2">Message Sent!</h3>
-                <p className="text-slate-300 text-sm">
+              <div className="text-center py-12">
+                <CheckCircle className="w-14 h-14 text-green-400 mx-auto mb-4" />
+                <h3 className="text-white text-2xl font-bold mb-2">
+                  Message Sent!
+                </h3>
+                <p className="text-slate-300 text-base">
                   We&apos;ll get back to you within 24 hours.
                 </p>
               </div>
             ) : (
               <>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-5">
                   <input
                     type="text"
                     name="name"
@@ -146,7 +152,7 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-3 py-2 text-sm text-white"
+                    className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-4 py-3 text-base text-white"
                   />
                   <input
                     type="text"
@@ -154,10 +160,11 @@ const ContactSection = () => {
                     placeholder="Company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-3 py-2 text-sm text-white"
+                    className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-4 py-3 text-base text-white"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+
+                <div className="grid grid-cols-2 gap-5">
                   <input
                     type="email"
                     name="email"
@@ -165,7 +172,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-3 py-2 text-sm text-white"
+                    className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-4 py-3 text-base text-white"
                   />
                   <input
                     type="tel"
@@ -173,22 +180,24 @@ const ContactSection = () => {
                     placeholder="Phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-3 py-2 text-sm text-white"
+                    className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-4 py-3 text-base text-white"
                   />
                 </div>
+
                 <textarea
                   name="message"
                   placeholder="Project Details *"
-                  rows={3}
+                  rows={4}
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-3 py-2 text-sm text-white w-full"
+                  className="bg-slate-700/50 border border-slate-600/50 rounded-lg px-4 py-3 text-base text-white w-full"
                 />
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold py-2 rounded-lg hover:scale-105 transition"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-base font-semibold py-3 rounded-lg hover:scale-[1.03] transition-transform shadow-md"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </button>

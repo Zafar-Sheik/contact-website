@@ -74,7 +74,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, selected, onSelect }) => {
                 />
               </div>
 
-              <nav className="flex flex-col gap-2 pt-5">
+              <nav className="flex flex-col gap-2 pt-15">
                 {items.map((item) => (
                   <button
                     key={item}
