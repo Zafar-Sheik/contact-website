@@ -130,7 +130,7 @@ const solutions = {
   "Web Design": {
     id: "web-development",
     title: "Web",
-    bottomTitle: "Development",
+    bottomTitle: "Design",
     subtitle: "Build Your Online",
     catchLine: "Presence",
     description:
