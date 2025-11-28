@@ -30,9 +30,9 @@ const solutions = {
     subtitle: "Manage Your Logistics",
     catchLine: "With Ease",
     description:
-      "Simplify your logistics operations with real-time tracking, route optimization, and performance insights.",
+      "Simplify your logistics operations with route optimization, and performance insights.",
     extraContent:
-      "Monitor your fleet, assign deliveries, and receive live updates on each trip. Reduce fuel costs and improve delivery reliability effortlessly.",
+      "Monitor your fleet and assign deliveries. Reduce fuel costs and improve delivery reliability effortlessly.",
     colour: "text-purple-600",
     image: "/solutions-images/logistics.png",
   },
@@ -155,8 +155,7 @@ const Page = () => {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -60 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
+            transition={{ duration: 0.5, ease: "easeInOut" }}>
             <SolutionCard {...current} />
           </motion.div>
         </AnimatePresence>
