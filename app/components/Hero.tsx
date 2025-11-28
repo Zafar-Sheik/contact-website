@@ -138,7 +138,7 @@ const Hero = () => {
                 Online Solutions
               </h1> */}
 
-              <img src="logo.png" className="w-100" />
+              <img src="logo.png" className="max-w-xs sm:max-w-sm md:max-w-md w-full" />
 
               <p className="text-lg pt-5 text-gray-700 leading-relaxed max-w-lg">
                 As Contact Computers celebrates 30 years of IT excellence,

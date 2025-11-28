@@ -39,7 +39,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-3"
             >
-              <div className="w-30 h-20 flex items-center justify-center">
+              <div className="w-24 h-16 flex items-center justify-center">
                 <img
                   className="w-full"
                   src="/logo.png"
@@ -134,7 +134,7 @@ const Navbar = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-slate-200">
                   <div className="flex items-center gap-3">
-                    <div className="w-30 h-20 flex items-center justify-center">
+                    <div className="w-20 h-14 flex items-center justify-center">
                       <img
                         className="w-full"
                         src="/logo.png"

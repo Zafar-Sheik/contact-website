@@ -153,8 +153,6 @@ const SolutionSection = () => {
             className="flex gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth px-2 sm:px-4"
             style={{
               scrollbarWidth: "none",
-              marginInlineStart: "3rem",
-              marginInlineEnd: "-3rem",
             }}
           >
             {solutions.map((s) => (
