@@ -94,7 +94,7 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Contact Info */}
           <div className="bg-slate-800/50 rounded-3xl p-10 border border-slate-700/50 shadow-xl">
             <h3 className="text-2xl font-bold text-white mb-4">Get In Touch</h3>
@@ -144,7 +144,7 @@ const ContactSection = () => {
               </div>
             ) : (
               <>
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <input
                     type="text"
                     name="name"
@@ -164,7 +164,7 @@ const ContactSection = () => {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <input
                     type="email"
                     name="email"

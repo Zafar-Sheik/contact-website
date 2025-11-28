@@ -10,10 +10,11 @@ type SidebarProps = {
   items: readonly SolutionKey[];
   selected: SolutionKey;
   onSelect: (name: SolutionKey) => void;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ items, selected, onSelect }) => {
-  const [open, setOpen] = useState(false);
+const Sidebar: React.FC<SidebarProps> = ({ items, selected, onSelect, open, setOpen }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, selected, onSelect }) => {
     <>
       {/* Floating Arrow Toggle Button */}
       <motion.button
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => setOpen(!open)}
         initial={false}
         animate={{ x: open ? 256 : 0 }}
         transition={{ type: "spring", stiffness: 180, damping: 18 }}

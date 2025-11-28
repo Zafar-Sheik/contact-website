@@ -138,6 +138,7 @@ export type SolutionKey = keyof typeof solutions;
 
 const Page = () => {
   const [selected, setSelected] = useState<SolutionKey>("Contact Messaging");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const current = solutions[selected];
 
   return (
@@ -146,9 +147,15 @@ const Page = () => {
         items={Object.keys(solutions) as SolutionKey[]}
         selected={selected}
         onSelect={setSelected}
+        open={sidebarOpen}
+        setOpen={setSidebarOpen}
       />
 
-      <main className="flex-1 p-2 sm:p-6 md:p-10 lg:p-12 overflow-y-auto">
+      <main
+        className={`flex-1 p-2 sm:p-6 md:p-10 lg:p-12 overflow-y-auto transition-all duration-300 ${
+          sidebarOpen ? "md:ml-64" : ""
+        }`}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={selected}
@@ -156,7 +163,7 @@ const Page = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -60 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}>
-            <SolutionCard {...current} />
+            <SolutionCard {...current} section={current.id} />
           </motion.div>
         </AnimatePresence>
       </main>
