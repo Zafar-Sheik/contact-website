@@ -42,6 +42,12 @@ const SolutionSection = () => {
       image: "/solutions-images/workflow.png",
       dark: true,
     },
+    {
+      title: "Web Design & Development",
+      tagline: "Custom websites and powerful web applications.",
+      image: "/solutions-images/ai-solution.png",
+      dark: false,
+    },
   ];
 
   const handleScroll = (direction: "left" | "right") => {

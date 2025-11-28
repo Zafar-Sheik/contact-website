@@ -11,6 +11,7 @@ import {
   Shield,
   Network,
   BarChart3,
+  Monitor, // Added Monitor icon
 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 
@@ -53,6 +54,14 @@ const ServicesSection = () => {
         "Beautiful dashboards that track KPIs, performance, and trends. Get clear insights to drive smarter business decisions.",
       icon: BarChart3,
       dark: true,
+    },
+    {
+      title: "Web Design & Development",
+      tagline: "Custom websites and powerful web applications.",
+      description:
+        "We build modern, responsive websites and complex web applications tailored to your business needs, focusing on performance and user experience.",
+      icon: Monitor,
+      dark: false,
     },
   ];
 

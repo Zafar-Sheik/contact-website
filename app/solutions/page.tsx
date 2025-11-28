@@ -127,6 +127,19 @@ const solutions = {
     colour: "text-green-600",
     image: "/solutions-images/dashboard.png",
   },
+  "Web Development": {
+    id: "web-development",
+    title: "Web",
+    bottomTitle: "Development",
+    subtitle: "Build Your Online",
+    catchLine: "Presence",
+    description:
+      "We design and build modern, responsive websites and complex web applications tailored to your business needs.",
+    extraContent:
+      "From simple marketing sites to full-stack custom web applications, we focus on performance, security, and exceptional user experience.",
+    colour: "text-pink-600",
+    image: "/solutions-images/ai-solution.png",
+  },
 } as const;
 
 // 🔥 Creates strong union type of ALL solution keys
