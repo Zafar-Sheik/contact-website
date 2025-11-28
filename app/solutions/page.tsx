@@ -127,7 +127,7 @@ const solutions = {
     colour: "text-green-600",
     image: "/solutions-images/dashboard.png",
   },
-  "Web Development": {
+  "Web Design": {
     id: "web-development",
     title: "Web",
     bottomTitle: "Development",
