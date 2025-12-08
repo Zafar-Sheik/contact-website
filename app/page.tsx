@@ -3,7 +3,7 @@
 import CloudBackupSection from "./components/CloudBackUpSection";
 import ContactSection from "./components/ContactSection";
 import Hero from "./components/Hero";
-import Introduction from "./components/Intro";
+
 import SolutionSection from "./components/SolutionSection";
 import ServicesSection from "./components/ServicesSection";
 import TestimonialsSection from "./components/Testimonials";
