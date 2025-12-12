@@ -45,8 +45,7 @@ const CloudBackupSection = () => {
         <motion.h2
           className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-slate-900"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+          animate={{ opacity: 1, y: 0 }}>
           Cloud{" "}
           <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
             Backup
@@ -68,8 +67,7 @@ const CloudBackupSection = () => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.18 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }}>
             <div>
               <h3 className="text-2xl font-semibold mb-6">{plan.title}</h3>
 
